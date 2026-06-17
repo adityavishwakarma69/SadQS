@@ -1,0 +1,6 @@
+module Modules.Common
+Slider 1.0 Slider.qml
+Widget 1.0 Widget.qml
+StaticWidget 1.0 StaticWidget.qml
+ExpandableWidget 1.0 ExpandableWidget.qml
+StyledText 1.0 StyledText.qml

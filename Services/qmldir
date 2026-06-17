@@ -1,0 +1,4 @@
+module Services
+singleton BrightnessSvc 1.0 BrightnessSvc.qml
+singleton NiriSvc 1.0 NiriSvc.qml
+singleton NetworkSvc 1.0 NetworkSvc.qml
