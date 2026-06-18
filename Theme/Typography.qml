@@ -10,6 +10,7 @@ QtObject {
       readonly property int small: 10
       readonly property int normal: 12
       readonly property int large: 15
+      readonly property int huge: 24
     }
     readonly property QtObject weight: QtObject {
         readonly property int normal: Font.Normal

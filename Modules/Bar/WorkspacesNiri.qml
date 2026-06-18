@@ -13,6 +13,7 @@ StaticWidget {
     Repeater {
       model: NiriSvc.workspaces
       StyledText{
+        required property var model;
         // don't show the last workspace (extra niri reserved)
         property color tcol: (model.isFocused ? Colors.cPrimary : Colors.cOnSurface)
         visible: model.index < NiriSvc.workspaces.count
@@ -23,8 +24,8 @@ StaticWidget {
           hoverEnabled: true
           anchors.fill: parent
           onClicked: 
-            if (!model.isFocused)
-              NiriSvc.focusWorkspace(model.index)
+            if (!parent.model.isFocused)
+              NiriSvc.focusWorkspace(parent.model.index)
         }
       }
     }

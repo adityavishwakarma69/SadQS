@@ -50,6 +50,7 @@ PanelWindow {
       spacing: root.margin
 
       // widgets here
+      Power{rootWindow: bar}
       Battery{}
       Backlight{}
       PwVol{}
