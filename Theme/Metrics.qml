@@ -35,4 +35,21 @@ QtObject {
       }
     } 
   }
+  readonly property QtObject launcher: QtObject {
+    readonly property int width: 300
+    readonly property int height: 300
+    readonly property QtObject content: QtObject {
+      // margin between the items
+      readonly property int margin: 5
+      // padding top and bottom of the whole list view
+      readonly property int padding: 5
+      readonly property real radius: 5
+    }
+    readonly property QtObject field: QtObject {
+      readonly property int padding: 5
+      readonly property real radius: 5
+    }
+    readonly property int iconSize: 25
+    readonly property real radius: 10
+  }
 }

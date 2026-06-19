@@ -6,3 +6,4 @@ ExpandableWidget 1.0 ExpandableWidget.qml
 StyledText 1.0 StyledText.qml
 PopupMenu 1.0 PopupMenu.qml
 ButtonLabel 1.0 ButtonLabel.qml
+Overlay 1.0 Overlay.qml
