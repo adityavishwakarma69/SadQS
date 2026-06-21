@@ -38,6 +38,7 @@ QtObject {
   readonly property QtObject launcher: QtObject {
     readonly property int width: 300
     readonly property int height: 300
+    readonly property real borderWidth: 1.5
     readonly property QtObject content: QtObject {
       // margin between the items
       readonly property int margin: 5
@@ -51,5 +52,20 @@ QtObject {
     }
     readonly property int iconSize: 25
     readonly property real radius: 10
+  }
+  readonly property QtObject wifiMenu: QtObject{
+    readonly property int width: 150
+    readonly property int height: 200
+    readonly property int itemSpacing: 5
+    readonly property int contentMargin: 10
+    readonly property real radius: 5
+    readonly property real borderWidth: 1.5
+  }
+  readonly property QtObject textInputPopup: QtObject{
+    readonly property int maxTextWidth: Screen.width - 200
+    readonly property int contentMargin: 10 
+    readonly property real radius: 10
+    readonly property real fieldRadius: 5
+    readonly property real borderWidth: 1.5
   }
 }

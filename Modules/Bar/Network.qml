@@ -4,6 +4,7 @@ import Quickshell.Networking
 import Theme
 import Services
 import Modules.Common
+import Modules.Menu
 
 ExpandableWidget {
   id: root
@@ -20,7 +21,7 @@ ExpandableWidget {
     id: row
     spacing: parent.marginXHint
     StyledText {
-      property string conname: root.primaryDevice?.networks.values.find(n => n.connected).name ?? ""
+      property string conname: root.primaryDevice?.networks.values.find(n => n.connected)?.name ?? ""
       visible: root.expanded
       text: conname
     }
@@ -35,5 +36,14 @@ ExpandableWidget {
     id: hoverArea
     anchors.fill: parent
     hoverEnabled: true
+    onClicked: {
+      menu.posX = mapToItem(null, 0, 0).x + menu.implicitWidth/2
+      menu.toggle()
+    }
+  }
+  WifiMenu{
+    id: menu
+    posX: 0
+    posY: 5
   }
 }

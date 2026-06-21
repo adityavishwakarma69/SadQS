@@ -7,7 +7,7 @@ Item {
   property real min: 0
   property real max: 1
   property color activeColor: Colors.cPrimary
-  property color inactiveColor: Colors.cSurfaceVariant
+  property color inactiveColor: Colors.cPrimaryContainer
 
   implicitWidth: 60
   implicitHeight: 4

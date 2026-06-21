@@ -4,154 +4,154 @@ import QtQuick
 
 QtObject {
 	
-		readonly property color cBackground: "#131318"
-		readonly property color cBackgroundAlpha: "#CC131318"
+		readonly property color cBackground: "#101418"
+		readonly property color cBackgroundAlpha: "#FF101418"
 	
 		readonly property color cError: "#ffb4ab"
-		readonly property color cErrorAlpha: "#CCFFB4AB"
+		readonly property color cErrorAlpha: "#FFFFB4AB"
 	
 		readonly property color cErrorContainer: "#93000a"
-		readonly property color cErrorContainerAlpha: "#CC93000A"
+		readonly property color cErrorContainerAlpha: "#FF93000A"
 	
-		readonly property color cInverseOnSurface: "#303036"
-		readonly property color cInverseOnSurfaceAlpha: "#CC303036"
+		readonly property color cInverseOnSurface: "#2e3135"
+		readonly property color cInverseOnSurfaceAlpha: "#FF2E3135"
 	
-		readonly property color cInversePrimary: "#545a92"
-		readonly property color cInversePrimaryAlpha: "#CC545A92"
+		readonly property color cInversePrimary: "#35618e"
+		readonly property color cInversePrimaryAlpha: "#FF35618E"
 	
-		readonly property color cInverseSurface: "#e4e1e9"
-		readonly property color cInverseSurfaceAlpha: "#CCE4E1E9"
+		readonly property color cInverseSurface: "#e1e2e8"
+		readonly property color cInverseSurfaceAlpha: "#FFE1E2E8"
 	
-		readonly property color cOnBackground: "#e4e1e9"
-		readonly property color cOnBackgroundAlpha: "#CCE4E1E9"
+		readonly property color cOnBackground: "#e1e2e8"
+		readonly property color cOnBackgroundAlpha: "#FFE1E2E8"
 	
 		readonly property color cOnError: "#690005"
-		readonly property color cOnErrorAlpha: "#CC690005"
+		readonly property color cOnErrorAlpha: "#FF690005"
 	
 		readonly property color cOnErrorContainer: "#ffdad6"
-		readonly property color cOnErrorContainerAlpha: "#CCFFDAD6"
+		readonly property color cOnErrorContainerAlpha: "#FFFFDAD6"
 	
-		readonly property color cOnPrimary: "#252b61"
-		readonly property color cOnPrimaryAlpha: "#CC252B61"
+		readonly property color cOnPrimary: "#003258"
+		readonly property color cOnPrimaryAlpha: "#FF003258"
 	
-		readonly property color cOnPrimaryContainer: "#dfe0ff"
-		readonly property color cOnPrimaryContainerAlpha: "#CCDFE0FF"
+		readonly property color cOnPrimaryContainer: "#d1e4ff"
+		readonly property color cOnPrimaryContainerAlpha: "#FFD1E4FF"
 	
-		readonly property color cOnPrimaryFixed: "#0e154b"
-		readonly property color cOnPrimaryFixedAlpha: "#CC0E154B"
+		readonly property color cOnPrimaryFixed: "#001d36"
+		readonly property color cOnPrimaryFixedAlpha: "#FF001D36"
 	
-		readonly property color cOnPrimaryFixedVariant: "#3c4279"
-		readonly property color cOnPrimaryFixedVariantAlpha: "#CC3C4279"
+		readonly property color cOnPrimaryFixedVariant: "#184975"
+		readonly property color cOnPrimaryFixedVariantAlpha: "#FF184975"
 	
-		readonly property color cOnSecondary: "#2d2f42"
-		readonly property color cOnSecondaryAlpha: "#CC2D2F42"
+		readonly property color cOnSecondary: "#253140"
+		readonly property color cOnSecondaryAlpha: "#FF253140"
 	
-		readonly property color cOnSecondaryContainer: "#e0e0f9"
-		readonly property color cOnSecondaryContainerAlpha: "#CCE0E0F9"
+		readonly property color cOnSecondaryContainer: "#d6e3f7"
+		readonly property color cOnSecondaryContainerAlpha: "#FFD6E3F7"
 	
-		readonly property color cOnSecondaryFixed: "#181a2c"
-		readonly property color cOnSecondaryFixedAlpha: "#CC181A2C"
+		readonly property color cOnSecondaryFixed: "#101c2b"
+		readonly property color cOnSecondaryFixedAlpha: "#FF101C2B"
 	
-		readonly property color cOnSecondaryFixedVariant: "#444559"
-		readonly property color cOnSecondaryFixedVariantAlpha: "#CC444559"
+		readonly property color cOnSecondaryFixedVariant: "#3b4858"
+		readonly property color cOnSecondaryFixedVariantAlpha: "#FF3B4858"
 	
-		readonly property color cOnSurface: "#e4e1e9"
-		readonly property color cOnSurfaceAlpha: "#CCE4E1E9"
+		readonly property color cOnSurface: "#e1e2e8"
+		readonly property color cOnSurfaceAlpha: "#FFE1E2E8"
 	
-		readonly property color cOnSurfaceVariant: "#c7c5d0"
-		readonly property color cOnSurfaceVariantAlpha: "#CCC7C5D0"
+		readonly property color cOnSurfaceVariant: "#c3c7cf"
+		readonly property color cOnSurfaceVariantAlpha: "#FFC3C7CF"
 	
-		readonly property color cOnTertiary: "#45263c"
-		readonly property color cOnTertiaryAlpha: "#CC45263C"
+		readonly property color cOnTertiary: "#3b2948"
+		readonly property color cOnTertiaryAlpha: "#FF3B2948"
 	
-		readonly property color cOnTertiaryContainer: "#ffd7ef"
-		readonly property color cOnTertiaryContainerAlpha: "#CCFFD7EF"
+		readonly property color cOnTertiaryContainer: "#f2daff"
+		readonly property color cOnTertiaryContainerAlpha: "#FFF2DAFF"
 	
-		readonly property color cOnTertiaryFixed: "#2d1127"
-		readonly property color cOnTertiaryFixedAlpha: "#CC2D1127"
+		readonly property color cOnTertiaryFixed: "#251432"
+		readonly property color cOnTertiaryFixedAlpha: "#FF251432"
 	
-		readonly property color cOnTertiaryFixedVariant: "#5e3c53"
-		readonly property color cOnTertiaryFixedVariantAlpha: "#CC5E3C53"
+		readonly property color cOnTertiaryFixedVariant: "#523f5f"
+		readonly property color cOnTertiaryFixedVariantAlpha: "#FF523F5F"
 	
-		readonly property color cOutline: "#91909a"
-		readonly property color cOutlineAlpha: "#CC91909A"
+		readonly property color cOutline: "#8d9199"
+		readonly property color cOutlineAlpha: "#FF8D9199"
 	
-		readonly property color cOutlineVariant: "#46464f"
-		readonly property color cOutlineVariantAlpha: "#CC46464F"
+		readonly property color cOutlineVariant: "#42474e"
+		readonly property color cOutlineVariantAlpha: "#FF42474E"
 	
-		readonly property color cPrimary: "#bdc2ff"
-		readonly property color cPrimaryAlpha: "#CCBDC2FF"
+		readonly property color cPrimary: "#a0cafd"
+		readonly property color cPrimaryAlpha: "#FFA0CAFD"
 	
-		readonly property color cPrimaryContainer: "#3c4279"
-		readonly property color cPrimaryContainerAlpha: "#CC3C4279"
+		readonly property color cPrimaryContainer: "#184975"
+		readonly property color cPrimaryContainerAlpha: "#FF184975"
 	
-		readonly property color cPrimaryFixed: "#dfe0ff"
-		readonly property color cPrimaryFixedAlpha: "#CCDFE0FF"
+		readonly property color cPrimaryFixed: "#d1e4ff"
+		readonly property color cPrimaryFixedAlpha: "#FFD1E4FF"
 	
-		readonly property color cPrimaryFixedDim: "#bdc2ff"
-		readonly property color cPrimaryFixedDimAlpha: "#CCBDC2FF"
+		readonly property color cPrimaryFixedDim: "#a0cafd"
+		readonly property color cPrimaryFixedDimAlpha: "#FFA0CAFD"
 	
 		readonly property color cScrim: "#000000"
-		readonly property color cScrimAlpha: "#CC000000"
+		readonly property color cScrimAlpha: "#FF000000"
 	
-		readonly property color cSecondary: "#c4c5dd"
-		readonly property color cSecondaryAlpha: "#CCC4C5DD"
+		readonly property color cSecondary: "#bac8db"
+		readonly property color cSecondaryAlpha: "#FFBAC8DB"
 	
-		readonly property color cSecondaryContainer: "#444559"
-		readonly property color cSecondaryContainerAlpha: "#CC444559"
+		readonly property color cSecondaryContainer: "#3b4858"
+		readonly property color cSecondaryContainerAlpha: "#FF3B4858"
 	
-		readonly property color cSecondaryFixed: "#e0e0f9"
-		readonly property color cSecondaryFixedAlpha: "#CCE0E0F9"
+		readonly property color cSecondaryFixed: "#d6e3f7"
+		readonly property color cSecondaryFixedAlpha: "#FFD6E3F7"
 	
-		readonly property color cSecondaryFixedDim: "#c4c5dd"
-		readonly property color cSecondaryFixedDimAlpha: "#CCC4C5DD"
+		readonly property color cSecondaryFixedDim: "#bac8db"
+		readonly property color cSecondaryFixedDimAlpha: "#FFBAC8DB"
 	
 		readonly property color cShadow: "#000000"
-		readonly property color cShadowAlpha: "#CC000000"
+		readonly property color cShadowAlpha: "#FF000000"
 	
-		readonly property color cSourceColor: "#171d4f"
-		readonly property color cSourceColorAlpha: "#CC171D4F"
+		readonly property color cSourceColor: "#4c74a0"
+		readonly property color cSourceColorAlpha: "#FF4C74A0"
 	
-		readonly property color cSurface: "#131318"
-		readonly property color cSurfaceAlpha: "#CC131318"
+		readonly property color cSurface: "#101418"
+		readonly property color cSurfaceAlpha: "#FF101418"
 	
-		readonly property color cSurfaceBright: "#39393f"
-		readonly property color cSurfaceBrightAlpha: "#CC39393F"
+		readonly property color cSurfaceBright: "#36393e"
+		readonly property color cSurfaceBrightAlpha: "#FF36393E"
 	
-		readonly property color cSurfaceContainer: "#1f1f25"
-		readonly property color cSurfaceContainerAlpha: "#CC1F1F25"
+		readonly property color cSurfaceContainer: "#1d2024"
+		readonly property color cSurfaceContainerAlpha: "#FF1D2024"
 	
-		readonly property color cSurfaceContainerHigh: "#29292f"
-		readonly property color cSurfaceContainerHighAlpha: "#CC29292F"
+		readonly property color cSurfaceContainerHigh: "#272a2f"
+		readonly property color cSurfaceContainerHighAlpha: "#FF272A2F"
 	
-		readonly property color cSurfaceContainerHighest: "#34343a"
-		readonly property color cSurfaceContainerHighestAlpha: "#CC34343A"
+		readonly property color cSurfaceContainerHighest: "#32353a"
+		readonly property color cSurfaceContainerHighestAlpha: "#FF32353A"
 	
-		readonly property color cSurfaceContainerLow: "#1b1b21"
-		readonly property color cSurfaceContainerLowAlpha: "#CC1B1B21"
+		readonly property color cSurfaceContainerLow: "#191c20"
+		readonly property color cSurfaceContainerLowAlpha: "#FF191C20"
 	
-		readonly property color cSurfaceContainerLowest: "#0d0e13"
-		readonly property color cSurfaceContainerLowestAlpha: "#CC0D0E13"
+		readonly property color cSurfaceContainerLowest: "#0b0e13"
+		readonly property color cSurfaceContainerLowestAlpha: "#FF0B0E13"
 	
-		readonly property color cSurfaceDim: "#131318"
-		readonly property color cSurfaceDimAlpha: "#CC131318"
+		readonly property color cSurfaceDim: "#101418"
+		readonly property color cSurfaceDimAlpha: "#FF101418"
 	
-		readonly property color cSurfaceTint: "#bdc2ff"
-		readonly property color cSurfaceTintAlpha: "#CCBDC2FF"
+		readonly property color cSurfaceTint: "#a0cafd"
+		readonly property color cSurfaceTintAlpha: "#FFA0CAFD"
 	
-		readonly property color cSurfaceVariant: "#46464f"
-		readonly property color cSurfaceVariantAlpha: "#CC46464F"
+		readonly property color cSurfaceVariant: "#42474e"
+		readonly property color cSurfaceVariantAlpha: "#FF42474E"
 	
-		readonly property color cTertiary: "#e7b9d6"
-		readonly property color cTertiaryAlpha: "#CCE7B9D6"
+		readonly property color cTertiary: "#d6bee5"
+		readonly property color cTertiaryAlpha: "#FFD6BEE5"
 	
-		readonly property color cTertiaryContainer: "#5e3c53"
-		readonly property color cTertiaryContainerAlpha: "#CC5E3C53"
+		readonly property color cTertiaryContainer: "#523f5f"
+		readonly property color cTertiaryContainerAlpha: "#FF523F5F"
 	
-		readonly property color cTertiaryFixed: "#ffd7ef"
-		readonly property color cTertiaryFixedAlpha: "#CCFFD7EF"
+		readonly property color cTertiaryFixed: "#f2daff"
+		readonly property color cTertiaryFixedAlpha: "#FFF2DAFF"
 	
-		readonly property color cTertiaryFixedDim: "#e7b9d6"
-		readonly property color cTertiaryFixedDimAlpha: "#CCE7B9D6"
+		readonly property color cTertiaryFixedDim: "#d6bee5"
+		readonly property color cTertiaryFixedDimAlpha: "#FFD6BEE5"
 	
 }

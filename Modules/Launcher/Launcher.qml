@@ -19,23 +19,33 @@ Overlay {
   property int iconSize: Metrics.launcher.iconSize
   property var apps: DesktopEntries.applications
   onVisibleChanged: {
-    Qt.callLater(() => searchInput.forceActiveFocus())
+    if (visible) {
+      Qt.callLater(() => searchInput.forceActiveFocus())  
+      return
+    }
+    searchInput.clear()
+  }
+  Item {
+    anchors.fill: parent
+    focus: root.visible
+
+    Keys.onEscapePressed: root.close()
   }
   Rectangle {
     id: content
     anchors.fill: parent
     color: Colors.cSurfaceAlpha
     opacity: root.visible ? 1 : 0
-    scale: root.visible ? 1 : 0.95
+    scale: root.visible ? 1 : 0.2
     border.width: 1.5
     border.color: Colors.cOutline
     radius: Metrics.launcher.radius
     
     Behavior on opacity {
-        NumberAnimation { duration: 150; easing.type: Easing.OutQuad }
+        NumberAnimation { duration: 150; easing.type: Easing.OutCirc }
     }
     Behavior on scale {
-        NumberAnimation { duration: 150; easing.type: Easing.OutQuad }
+        NumberAnimation { duration: 150; easing.type: Easing.OutCirc }
     }
 
     ColumnLayout {
@@ -52,10 +62,11 @@ Overlay {
         topPadding: Metrics.launcher.field.padding
         font.pixelSize: Typography.font.size.large
         color: Colors.cPrimary
+        placeholderTextColor: Colors.cOnSurfaceVariant
         background: Rectangle {
           color: "transparent"
-          border.width: 1
-          border.color: Colors.cPrimary
+          //border.width: 1
+          //border.color: Colors.cPrimary
           radius: Metrics.launcher.field.radius
         }
         // start with first
@@ -67,7 +78,7 @@ Overlay {
           return filtered.sort((a, b) => a.name.localeCompare(b.name));
         }
         onFilteredAppsChanged:{
-          index = 0
+          //index = 0
         }
         Keys.onUpPressed: {
           let newIndex = index - 1;
@@ -85,11 +96,11 @@ Overlay {
           root.close();  // close the Overlay
         }
         Keys.onReturnPressed: {
-          root.close();
-          // if nothing selected during execution selected first
           filteredApps[index]?.execute();
           index = 0
           clear()
+          // this must be at last
+          root.close();
         }
       }
 
@@ -103,9 +114,17 @@ Overlay {
         topPadding: Metrics.launcher.content.padding
         bottomPadding: Metrics.launcher.content.padding
         ListView {
+          id: listView
           model: searchInput.filteredApps
           spacing: Metrics.launcher.content.margin
           clip: true
+
+          Connections {
+            target: searchInput
+            function onIndexChanged() {
+              listView.positionViewAtIndex(searchInput.index, ListView.Contain);
+            }
+          }
 
           delegate: Rectangle {
             id: delegate
@@ -117,11 +136,13 @@ Overlay {
             color: mouseArea.containsMouse || selected ? Colors.cPrimary : "transparent"
             radius: Metrics.launcher.content.radius
 
+            /*
             onSelectedChanged: {
               if (selected) {
                 ListView.view.positionViewAtIndex(index, ListView.Contain);
               }
             }
+            */
 
             RowLayout {
               Layout.fillWidth: true
