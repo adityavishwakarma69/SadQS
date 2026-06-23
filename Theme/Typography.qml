@@ -4,7 +4,7 @@ import QtQuick
 
 QtObject {
   readonly property QtObject font : QtObject {
-    readonly property string family: "JetBrainsMono Nerd Font"
+    readonly property string family: "JetBrains Mono Nerd Font"
 
     readonly property QtObject size: QtObject {
       readonly property int small: 10

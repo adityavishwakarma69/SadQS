@@ -1,49 +1,30 @@
 import QtQuick
-import QtQuick.Layouts
-import Quickshell.Widgets
-import Theme
-import Services
 import Modules.Common
+import Services
+import Theme
 
-StaticWidget {
-  paddingX: Metrics.bar.widget.padding.x
-  paddingY: Metrics.bar.widget.padding.y
-  RowLayout {
-    spacing: parent.marginXHint
-    Repeater {
-      model: NiriSvc.workspaces
-      StyledText{
-        required property var model;
-        // don't show the last workspace (extra niri reserved)
-        property color tcol: (model.isFocused ? Colors.cPrimary : Colors.cOnSurface)
-        visible: model.index < NiriSvc.workspaces.count
-        text: model.index
-        color: tcol
-        MouseArea {
-          id: hoverArea
-          hoverEnabled: true
-          anchors.fill: parent
-          onClicked: 
-            if (!parent.model.isFocused)
-              NiriSvc.focusWorkspace(parent.model.index)
-        }
-      }
-    }
-
-    IconImage {
-      property string srcPath: NiriSvc.focusedWindow?.iconPath ?? ""
-      source: srcPath != ""? "file://" + srcPath : ""
-      implicitSize: Metrics.iconSizeSmall
-      mipmap: true
-      visible: srcPath != ""
-    }
-
+Row {
+  leftPadding: Metrics.bar.widget.padding.x
+  rightPadding: Metrics.bar.widget.padding.x
+  topPadding: Metrics.bar.widget.padding.y
+  bottomPadding: Metrics.bar.widget.padding.y
+  Repeater {
+    model: NiriSvc.workspaces
     StyledText {
-      // trim the text
-      elide: Text.ElideRight
-      Layout.maximumWidth: 200
-      // if NiriSvc.focusedWindow exists and has text
-      text: NiriSvc.focusedWindow?.title ?? ""
+      id: delegateRoot
+      required property var model
+      text: model.index
+      visible: model.index < NiriSvc.workspaces.count
+      color: model.isFocused ? Colors.cPrimary : Colors.cOnSurface
+      font.pixelSize: Typography.font.size.normal
+      leftPadding: Metrics.bar.widget.innerMargin.x 
+      rightPadding: Metrics.bar.widget.innerMargin.x 
+      horizontalAlignment: Text.AlignHCenter
+
+      MouseArea {
+        anchors.fill: parent
+        onClicked: NiriSvc.focusWorkspaceById(delegateRoot.model.id)
+      }
     }
   }
 }

@@ -15,7 +15,7 @@ PanelWindow {
 
   id: bar
 
-  Item {
+  Rectangle {
     id: root
     anchors.fill: parent
     // bar padding
@@ -24,39 +24,37 @@ PanelWindow {
     anchors.topMargin: Metrics.bar.padding.top
     anchors.bottomMargin: Metrics.bar.padding.bottom
 
-    property int margin: Metrics.bar.widget.margin.x
-    RowLayout {
-      id: leftWidgets
-      anchors.verticalCenter: parent.verticalCenter
+    color: "transparent"
+
+    // left widgets
+    Row {
       anchors.left: parent.left
-      spacing: root.margin
-
-      // widgets here
+      anchors.verticalCenter: parent.verticalCenter
+      // widgets
       WorkspacesNiri{}
+      WindowNiri{}
     }
-    RowLayout {
-      id: centerWidgets
-      anchors.centerIn: parent
-      spacing: root.margin
 
-      // widgets here
+    // center widgets
+    Row {
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors.verticalCenter: parent.verticalCenter
+      // widgets
       Clock{}
     }
-    RowLayout {
-      id: rightWidgets
-      anchors.verticalCenter: parent.verticalCenter
-      anchors.right: parent.right
-      layoutDirection: Qt.RightToLeft
-      spacing: root.margin
 
-      // widgets here
-      Power{rootWindow: bar}
-      Battery{}
-      Backlight{}
-      PwVol{}
+    // right widgets
+    Row {
+      anchors.right: parent.right
+      anchors.verticalCenter: parent.verticalCenter
+      // widgets
+      SysTray{}
       Network{}
-      SysTray{window:bar}
+      PwVol{}
+      Backlight{}
+      Battery{}
     }
+    
   }
   anchors.top: true
   anchors.right: true

@@ -1,49 +1,70 @@
 import QtQuick
-import QtQuick.Layouts
+import QtQuick.Effects
 import Quickshell.Networking
+import Quickshell.Widgets
 import Theme
 import Services
-import Modules.Common
 import Modules.Menu
+import Modules.Common
 
-ExpandableWidget {
+Item {
   id: root
-  paddingX: Metrics.bar.widget.padding.x
-  paddingY: Metrics.bar.widget.padding.y
+  implicitHeight: content.height
+  implicitWidth: content.width
+
   property var primaryDevice: NetworkSvc?.primaryDevice
   property var deviceType: primaryDevice?.type
-  collapsedWidth: iconText.width
-  expandedWidth: row.width
-  collapsedHeight: parent.height
-  expandedHeight: parent.height
-  expanded: hoverArea.containsMouse
-  RowLayout {
-    id: row
-    spacing: parent.marginXHint
-    StyledText {
-      property string conname: root.primaryDevice?.networks.values.find(n => n.connected)?.name ?? ""
-      visible: root.expanded
-      text: conname
+  property var connectedNetwork: root.primaryDevice?.networks?.values.find(n => n.connected)
+
+  Row {
+    id: content
+    leftPadding: Metrics.bar.widget.padding.x
+    rightPadding: Metrics.bar.widget.padding.x
+    topPadding: Metrics.bar.widget.padding.y
+    bottomPadding: Metrics.bar.widget.padding.y 
+    spacing: Metrics.bar.widget.innerMargin.x
+
+    IconImage {
+      source : {
+        if (root.deviceType === DeviceType.Wifi){
+          if (root.connectedNetwork?.signalStrength == 0 ) return "image://icon/network-wireless-signal-none"
+          if (root.connectedNetwork?.signalStrength <= 0.3 ) return "image://icon/network-wireless-signal-weak"
+          if (root.connectedNetwork?.signalStrength <= 0.6 ) return "image://icon/network-wireless-signal-ok"
+          if (root.connectedNetwork?.signalStrength <= 0.8 ) return "image://icon/network-wireless-signal-good"
+          if (root.connectedNetwork?.signalStrength <= 1 ) return "image://icon/network-wireless-signal-excellent"
+        }
+        else if(root.deviceType === DeviceType.Wired) {
+          return "image://icon/network-wired"
+        }
+      }
+      implicitSize: Metrics.iconSizeSmall
+      MultiEffect {
+        anchors.fill: parent
+        source: parent
+        colorization: 1
+        colorizationColor: Colors.cOnSurface
+      }
     }
-    StyledText {
-      id: iconText
-      property string deviceText: root.deviceType === DeviceType.Wifi ? " " : (root.deviceType === DeviceType.Wired ? " " : "󰣼 ")
-      text: deviceText
-      color: root.deviceType ? Colors.cOnSurface : Colors.cError
-    }
-  }
-  MouseArea {
-    id: hoverArea
-    anchors.fill: parent
-    hoverEnabled: true
-    onClicked: {
-      menu.posX = mapToItem(null, 0, 0).x + menu.implicitWidth/2
-      menu.toggle()
+
+    StyledText{
+      text: {
+        if (root.deviceType === DeviceType.Wifi) return Math.round((root.connectedNetwork?.signalStrength??0) * 100) + "%"
+        if (root.deviceType === DeviceType.Wired) return "ETH"
+        return ""
+      }
+      visible: text !== ""
     }
   }
   WifiMenu{
     id: menu
     posX: 0
     posY: 5
+  }
+  MouseArea {
+    anchors.fill:parent
+    onClicked: (mouse) => {
+      menu.posX = mapToItem(null, 0, 0).x - menu.width/2 + root.width/2
+      menu.toggle()
+    }
   }
 }

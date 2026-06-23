@@ -1,50 +1,54 @@
 import QtQuick
-import QtQuick.Layouts
-import Theme
-import Services
+import QtQuick.Effects
+import Quickshell.Widgets
 import Modules.Common
+import Services
+import Theme
 
-ExpandableWidget {
-  paddingX: Metrics.bar.widget.padding.x
-  paddingY: Metrics.bar.widget.padding.y
-  expanded: hoverArea.containsMouse
-  collapsedWidth: iconText.width + percentText.width
-  expandedWidth: iconText.width + slider.width + percentText.width
-  collapsedHeight: parent.height
-  expandedHeight: parent.height
-  RowLayout {
-    spacing: 0
-    StyledText {
-      id: iconText
-      text: "󰃞 "
-    }
-    Slider { 
-      id: slider
-      min: 0.1
-      visible: hoverArea.containsMouse
-      property real fetchedValue: BrightnessSvc.percentage()
-      onFetchedValueChanged : {
-        value = fetchedValue
+
+Item {
+  id: root
+  implicitWidth: content.width
+  implicitHeight: content.height
+  property int miniumBrightness: 10
+  Row {
+    id: content
+    leftPadding: Metrics.bar.widget.padding.x
+    rightPadding: Metrics.bar.widget.padding.x
+    topPadding: Metrics.bar.widget.padding.y
+    bottomPadding: Metrics.bar.widget.padding.y 
+
+    property int percent: ((BrightnessSvc.brightness / BrightnessSvc.maxBrightness) * 100).toFixed(0)
+
+    spacing: Metrics.bar.widget.innerMargin.x
+
+    IconImage {
+      source: {
+        if (parent.percent <= 10) return "image://icon/display-brightness-off-symbolic"
+        if (parent.percent <= 30) return "image://icon/display-brightness-low-symbolic"
+        if (parent.percent <= 60) return "image://icon/display-brightness-medium-symbolic"
+        if (parent.percent <= 100) return "image://icon/display-brightness-high-symbolic"
       }
-      onValueChanged: {
-        BrightnessSvc.setAbsBrightness(Math.round(value * BrightnessSvc.maxBrightness))
+      implicitSize: Metrics.iconSizeSmall
+
+      MultiEffect {
+        anchors.fill: parent
+        source: parent
+        colorization: 1
+        colorizationColor: Colors.cOnSurface
       }
     }
+
     StyledText {
-      id: percentText
-      text: Math.round(BrightnessSvc.percentage() * 100) + "%"
+      text: parent.percent + "%"
     }
   }
-
   MouseArea {
-    id: hoverArea
-    hoverEnabled: true
-    anchors.fill: parent 
-    onPressed: (mouse) => slider.updateValue(mouse.x - slider.x)
-    onPositionChanged: (mouse) => { if (pressed) slider.updateValue(mouse.x - slider.x) }
+    anchors.fill: parent
     onWheel: (event) => {
-      const step = Math.round(BrightnessSvc.maxBrightness * 0.01)
-      BrightnessSvc.setBrightness(event.angleDelta.y > 0 ? step : -step)
+      const step = Math.round(BrightnessSvc.maxBrightness * 0.01) * (event.angleDelta.y > 0 ? 1 : -1)
+      const newBrightness = (BrightnessSvc.brightness + step) * 100 / BrightnessSvc.maxBrightness
+      if (newBrightness.toFixed(0) >= root.miniumBrightness) BrightnessSvc.setBrightness(step)
     }
   }
 }

@@ -100,7 +100,7 @@ Item {
             spacing: Metrics.wifiMenu.itemSpacing
             clip: true
             delegate: Rectangle {
-              color: modelData.connected ? Colors.cPrimary: (hoverArea.containsMouse ? Colors.cSecondary : Colors.cSurface)
+              color: modelData.connected ? Colors.cPrimary: (hoverArea.containsMouse ? Colors.cSecondary : "transparent")
               property color tcolor: modelData.connected ? Colors.cOnPrimary: (hoverArea.containsMouse ? Colors.cOnSecondary : Colors.cOnSurface)
               id: delegateItem 
               //implicitWidth: childrenRect.width

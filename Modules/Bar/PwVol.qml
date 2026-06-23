@@ -1,62 +1,59 @@
 import QtQuick
-import QtQuick.Layouts
+import QtQuick.Effects
+import Quickshell.Widgets
+import Modules.Common
 import Quickshell.Services.Pipewire
 import Theme
-import Modules.Common
 
-ExpandableWidget { 
-  paddingX: Metrics.bar.widget.padding.x
-  paddingY: Metrics.bar.widget.padding.y
-  id: volumeWidget
-  PwObjectTracker {
+Item {
+  id: root
+  implicitHeight: content.height
+  implicitWidth: content.width
+
+  PwObjectTracker{
     objects: [Pipewire.defaultAudioSink]
   }
   property var sink: Pipewire.defaultAudioSink
   property bool muted: sink ? sink.audio.muted : false
   property real volume: sink ? sink.audio.volume : 0
-  expanded: hoverArea.containsMouse
-  collapsedWidth: iconText.width + percentText.width
-  expandedWidth: iconText.width + slider.width + percentText.width
-  collapsedHeight: parent.height
-  expandedHeight: parent.height
+  Row {
+    id: content
+    leftPadding: Metrics.bar.widget.padding.x
+    rightPadding: Metrics.bar.widget.padding.x
+    topPadding: Metrics.bar.widget.padding.y
+    bottomPadding: Metrics.bar.widget.padding.y 
 
-  RowLayout{
-    spacing: 0
-    StyledText {
-      id: iconText
-      text: (volumeWidget.muted ? "󰝟" : "󰕾") + " "
-      color: volumeWidget.muted ? Colors.cError: Colors.cOnSurface
+    spacing: Metrics.bar.widget.innerMargin.x
+
+    IconImage {
+      source: {
+        if (root.muted) return "image://icon/audio-volume-muted"
+        if (root.volume <= 0.2) return "image://icon/audio-volume-low"
+        if (root.volume <= 0.5) return "image://icon/audio-volume-medium"
+        if (root.volume <= 1) return "image://icon/audio-volume-high"
+      }
+      implicitSize: Metrics.iconSizeSmall
+      MultiEffect {
+        anchors.fill: parent
+        source: parent
+        colorization: 1
+        colorizationColor: root.muted ? Colors.cError : Colors.cOnSurface
+      }
     }
-    Slider{
-      id: slider
-      visible: hoverArea.containsMouse
-      value: volumeWidget.volume
-    }
+
     StyledText {
-      id: percentText
-      text: Math.round(volumeWidget.volume * 100) + "%"
-      color: volumeWidget.muted ? Colors.cError: Colors.cOnSurface
+      text: Math.round(root.volume * 100) + "%"
+      color: root.muted ? Colors.cError : Colors.cOnSurface
     }
   }
-
   MouseArea {
-    id: hoverArea
-    hoverEnabled: true
     anchors.fill: parent
-    onClicked: (mouse) =>{
-      if (volumeWidget.sink && mouse.x < slider.x) volumeWidget.sink.audio.muted = !volumeWidget.sink.audio.muted
-    }
     onWheel: (wheel) => {
-      if (!volumeWidget.sink) return
-      const newVal = Math.max(0, Math.min(1, volumeWidget.volume + (wheel.angleDelta.y > 0 ? 0.01 : -0.01)))
-      volumeWidget.sink.audio.volume = newVal
+      const step = (wheel.angleDelta.y > 0 ? 0.01 : -0.01)
+      root.sink.audio.volume = root.volume + step
     }
-    onPressed: (mouse) => updateVolume(mouse.x)
-    onPositionChanged: (mouse) => { if (pressed) updateVolume(mouse.x) }
-
-    function updateVolume(x) {
-      const clamped = Math.max(0, Math.min(slider.width, x - slider.x))
-      volumeWidget.sink.audio.volume = clamped / slider.width
+    onClicked: {
+      root.sink.audio.muted = !root.sink.audio.muted 
     }
   }
 }

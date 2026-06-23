@@ -8,43 +8,49 @@ import QtQuick.Layouts
 import Modules.Common
 import Theme
 
-StaticWidget {
-    id: root
-    required property var window
-    RowLayout {
-        Repeater {
-            model: SystemTray.items
-            delegate: RowLayout {
-                id: row
-                required property var modelData
+Row {
+  id: root
+  leftPadding: Metrics.bar.widget.padding.x
+  rightPadding: Metrics.bar.widget.padding.x
+  topPadding: Metrics.bar.widget.padding.y
+  bottomPadding: Metrics.bar.widget.padding.y 
+  spacing: Metrics.bar.widget.innerMargin.x
+  visible: SystemTray.items.values.length > 0
 
-                IconImage {
-                    id: icon
-                    source: parent.modelData.icon
-                    implicitSize: Metrics.iconSizeSmall
-                    mipmap: true
-                    MouseArea {
-                        anchors.fill: parent
-                        acceptedButtons: Qt.LeftButton | Qt.RightButton
-                        onClicked: mouse => {
-                            if (mouse.button === Qt.RightButton) {
-                                if (row.modelData.hasMenu)
-                                menuAnchor.anchor.rect.x = mouse.x + mapToItem(null, 0, 0).x
-                                menuAnchor.anchor.rect.y = mouse.y + mapToItem(null, 0, 0).y
-                                    menuAnchor.open();
-                            } else {
-                                row.modelData.activate();
-                            }
-                        }
-                    }
-                }
+  StyledText {
+    text: "「"
+  }
 
-                QsMenuAnchor {
-                    id: menuAnchor
-                    menu: row.modelData.menu
-                    anchor.window: root.window
-                }
-            }
+  Repeater {
+    id: repeater
+    model: SystemTray.items
+    IconImage {
+      id: icon
+      required property var modelData
+      source: modelData.icon
+      implicitSize: Metrics.iconSizeSmall
+      QsMenuAnchor {
+        id: menu
+        menu: icon.modelData.menu
+        anchor.window: QsWindow.window
+      }
+      MouseArea {
+        anchors.fill: parent
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        onClicked: (mouse) => {
+          if (mouse.button === Qt.RightButton) {
+            menu.anchor.rect.x = mapToItem(null, 0, 0).x
+            menu.anchor.rect.y = mapToItem(null, 0, 0).y + icon.height
+            menu.open()
+          }
+          else {
+            icon.modelData.activate()
+          }
         }
+      }
     }
+  }
+StyledText {
+    text: "」"
+  }
 }
